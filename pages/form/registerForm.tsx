@@ -1,6 +1,7 @@
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {
   Box,
+  Button,
   Checkbox,
   FormControl,
   FormControlLabel,
@@ -19,6 +20,7 @@ import { gender } from "../mocks/gender";
 import { CheckboxAgreement } from "./checkboxAgreement";
 import CountrySelect from "./countrySelect";
 import { PasswordInput } from "./passwordInput";
+import SendIcon from "@mui/icons-material/Send";
 
 export const RegisterForm = () => {
   return (
@@ -98,22 +100,6 @@ export const RegisterForm = () => {
         />
       </div>
 
-      {/* <div>
-        <div className="mt-4 flex text-sm leading-6 text-gray-600">
-          <label
-            htmlFor="file-upload"
-            className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
-          >
-            <span>Upload a file</span> */}
-      {/* <input id="file-upload" name="file-upload" type="file" class="sr-only"> */}
-      {/* <Input type="file"></Input>
-          </label>
-          <p className="pl-1">or drag and drop</p>
-        </div>
-        <p className="text-xs leading-5 text-gray-600">
-          PNG, JPG, GIF up to 10MB
-        </p>
-      </div> */}
       <div>
         <Box sx={{ m: 1, width: "100%" }}>
           <label
@@ -149,13 +135,6 @@ export const RegisterForm = () => {
                 style={{ visibility: "hidden" }}
               ></input>
             </div>
-
-            {/* <button
-              type="button"
-              className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-            >
-              Upload
-            </button> */}
           </div>
         </Box>
       </div>
@@ -163,18 +142,22 @@ export const RegisterForm = () => {
         <CheckboxAgreement />
       </div>
       <div className="mt-6 flex items-center justify-end gap-x-6 border-t border-gray-900/10 pt-6">
-        <button
-          type="button"
+        <Button
+          variant="text"
+          color="warning"
           className="text-sm font-semibold leading-6 text-gray-900"
         >
           Cancel
-        </button>
-        <button
-          type="submit"
+        </Button>
+        <Button
+          size="medium"
+          color="error"
+          variant="contained"
+          endIcon={<SendIcon />}
           className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         >
           Save
-        </button>
+        </Button>
       </div>
     </Box>
   );
