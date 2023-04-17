@@ -16,7 +16,7 @@ import {
   TextField,
 } from "@mui/material";
 import React, { useState, MouseEvent, ChangeEvent } from "react";
-import { gender } from "../mocks/gender";
+import { gender } from "../../mocks/gender";
 import { CheckboxAgreement } from "./checkboxAgreement";
 import CountrySelect from "./countrySelect";
 import { PasswordInput } from "./passwordInput";

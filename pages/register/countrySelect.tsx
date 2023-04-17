@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import Image from "next/image";
-import { countries, CountryType } from "../mocks/countries";
+import { countries, CountryType } from "../../mocks/countries";
 import { height } from "@mui/system";
 
 export default function CountrySelect() {
