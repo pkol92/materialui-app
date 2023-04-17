@@ -7,6 +7,7 @@ import {
   FormGroup,
   FormLabel,
   IconButton,
+  Input,
   InputAdornment,
   InputLabel,
   MenuItem,
@@ -96,8 +97,84 @@ export const RegisterForm = () => {
           placeholder="Write something about you!"
         />
       </div>
+
+      {/* <div>
+        <div className="mt-4 flex text-sm leading-6 text-gray-600">
+          <label
+            htmlFor="file-upload"
+            className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
+          >
+            <span>Upload a file</span> */}
+      {/* <input id="file-upload" name="file-upload" type="file" class="sr-only"> */}
+      {/* <Input type="file"></Input>
+          </label>
+          <p className="pl-1">or drag and drop</p>
+        </div>
+        <p className="text-xs leading-5 text-gray-600">
+          PNG, JPG, GIF up to 10MB
+        </p>
+      </div> */}
+      <div>
+        <Box sx={{ m: 1, width: "100%" }}>
+          <label
+            htmlFor="photo"
+            className="block text-sm font-medium leading-6 text-gray-900"
+          >
+            Photo
+          </label>
+          <div className="mt-2 flex items-center gap-x-3">
+            <svg
+              className="h-12 w-12 text-gray-300"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <div className="flex align-middle">
+              <label
+                htmlFor="photo-file"
+                className="w-full rounded-md  px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 cursor-pointer"
+              >
+                Pick up your best photo!
+              </label>
+              <input
+                id="photo-file"
+                type="file"
+                accept=".jpg, .jpeg, .png"
+                style={{ visibility: "hidden" }}
+              ></input>
+            </div>
+
+            {/* <button
+              type="button"
+              className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+            >
+              Upload
+            </button> */}
+          </div>
+        </Box>
+      </div>
       <div>
         <CheckboxAgreement />
+      </div>
+      <div className="mt-6 flex items-center justify-end gap-x-6 border-t border-gray-900/10 pt-6">
+        <button
+          type="button"
+          className="text-sm font-semibold leading-6 text-gray-900"
+        >
+          Cancel
+        </button>
+        <button
+          type="submit"
+          className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        >
+          Save
+        </button>
       </div>
     </Box>
   );
