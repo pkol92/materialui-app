@@ -29,6 +29,7 @@ export const RegisterForm = () => {
         maxWidth: "500px",
         margin: "auto",
       }}
+      autoComplete="off"
     >
       <div>
         <TextField required id="name" label="name" />

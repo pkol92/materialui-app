@@ -6,8 +6,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Form() {
   return (
-    <main className="border-b border-gray-900/10 pb-12">
-      <h1 className="text-base font-semibold leading-7 text-gray-900>Register form">
+    <main className="pb-12">
+      <h1 className="text-4xl font-semibold leading-7 text-gray-900 pt-12 pb-12 text-center">
         Register form
       </h1>
       <RegisterForm />

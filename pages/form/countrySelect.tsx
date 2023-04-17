@@ -4,6 +4,7 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import Image from "next/image";
 import { countries, CountryType } from "../mocks/countries";
+import { height } from "@mui/system";
 
 export default function CountrySelect() {
   const src = (option: CountryType) => {
@@ -24,11 +25,13 @@ export default function CountrySelect() {
         >
           <Image
             loader={() => src(option)}
-            width={20}
-            height={10}
+            width={0}
+            height={0}
             src={src(option)}
             alt="country"
             unoptimized={true}
+            sizes="20px"
+            style={{ width: "20px", height: "auto" }}
           />
           {option.label} ({option.code}) +{option.phone}
         </Box>
