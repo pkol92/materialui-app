@@ -18,7 +18,7 @@ export const PasswordInput = () => {
     event.preventDefault();
   };
   return (
-    <FormControl variant="outlined" fullWidth sx={{ m: 1 }}>
+    <FormControl variant="outlined" fullWidth>
       <InputLabel htmlFor="password">Password</InputLabel>
       <OutlinedInput
         id="password"
