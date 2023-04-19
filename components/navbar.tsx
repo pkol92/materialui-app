@@ -12,6 +12,7 @@ import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function Navbar() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -30,11 +31,16 @@ export default function Navbar() {
           alignItems: "center",
           textAlign: "center",
           justifyContent: "flex-end",
+          gap: "20px",
           p: 1,
         }}
       >
-        <Typography sx={{ minWidth: 100 }}>Contact</Typography>
-        <Typography sx={{ minWidth: 100 }}>Profile</Typography>
+        <Typography sx={{ minWidth: 100 }}>
+          <Link href="/login">Login example</Link>{" "}
+        </Typography>
+        <Typography sx={{ minWidth: 100 }}>
+          <Link href="/register">Register example</Link>{" "}
+        </Typography>
         <Tooltip title="Account settings">
           <IconButton
             onClick={handleClick}

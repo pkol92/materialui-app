@@ -5,17 +5,15 @@ import Button from "@mui/material/Button";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import Navbar from "@/components/navbar";
+import { EnhancedTable } from "@/components/table";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  // const { push } = useRouter();
-  // useEffect(() => {
-  //   push("/login");
-  // }, [push]);
   return (
     <main>
       <Navbar />
+      <EnhancedTable />
     </main>
   );
 }
