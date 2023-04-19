@@ -20,13 +20,14 @@ import Switch from "@mui/material/Switch";
 import DeleteIcon from "@mui/icons-material/Delete";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import { visuallyHidden } from "@mui/utils";
-import { Data, rows } from "@/mocks/food";
+import { Data, headCells, rows } from "@/mocks/food";
 import {
   useCallback,
   useEffect,
   useState,
   MouseEvent,
   ChangeEvent,
+  FC,
 } from "react";
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
@@ -72,46 +73,6 @@ function stableSort<T>(
   return stabilizedThis.map((el) => el[0]);
 }
 
-interface HeadCell {
-  disablePadding: boolean;
-  id: keyof Data;
-  label: string;
-  numeric: boolean;
-}
-
-const headCells: readonly HeadCell[] = [
-  {
-    id: "name",
-    numeric: false,
-    disablePadding: true,
-    label: "Dessert (100g serving)",
-  },
-  {
-    id: "calories",
-    numeric: true,
-    disablePadding: false,
-    label: "Calories",
-  },
-  {
-    id: "fat",
-    numeric: true,
-    disablePadding: false,
-    label: "Fat (g)",
-  },
-  {
-    id: "carbs",
-    numeric: true,
-    disablePadding: false,
-    label: "Carbs (g)",
-  },
-  {
-    id: "protein",
-    numeric: true,
-    disablePadding: false,
-    label: "Protein (g)",
-  },
-];
-
 const DEFAULT_ORDER = "asc";
 const DEFAULT_ORDER_BY = "calories";
 const DEFAULT_ROWS_PER_PAGE = 5;
@@ -125,15 +86,14 @@ interface EnhancedTableProps {
   rowCount: number;
 }
 
-function EnhancedTableHead(props: EnhancedTableProps) {
-  const {
-    onSelectAllClick,
-    order,
-    orderBy,
-    numSelected,
-    rowCount,
-    onRequestSort,
-  } = props;
+const EnhancedTableHead: FC<EnhancedTableProps> = ({
+  onSelectAllClick,
+  order,
+  orderBy,
+  numSelected,
+  rowCount,
+  onRequestSort,
+}) => {
   const createSortHandler =
     (newOrderBy: keyof Data) => (event: MouseEvent<unknown>) => {
       onRequestSort(event, newOrderBy);
@@ -177,15 +137,15 @@ function EnhancedTableHead(props: EnhancedTableProps) {
       </TableRow>
     </TableHead>
   );
-}
+};
 
 interface EnhancedTableToolbarProps {
   numSelected: number;
 }
 
-function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
-  const { numSelected } = props;
-
+const EnhancedTableToolbar: FC<EnhancedTableToolbarProps> = ({
+  numSelected,
+}) => {
   return (
     <Toolbar
       sx={{
@@ -234,7 +194,7 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
       )}
     </Toolbar>
   );
-}
+};
 
 export const EnhancedTable = () => {
   const [order, setOrder] = useState<Order>(DEFAULT_ORDER);
