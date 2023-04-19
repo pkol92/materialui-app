@@ -13,7 +13,9 @@ export default function Home() {
   return (
     <main>
       <Navbar />
-      <EnhancedTable />
+      <div className="m-auto pt-20 pb-10 max-w-screen-md">
+        <EnhancedTable />
+      </div>
     </main>
   );
 }
