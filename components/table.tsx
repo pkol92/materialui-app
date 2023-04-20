@@ -30,7 +30,7 @@ import {
   FC,
 } from "react";
 
-function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
+const descendingComparator = <T,>(a: T, b: T, orderBy: keyof T) => {
   if (b[orderBy] < a[orderBy]) {
     return -1;
   }
@@ -38,7 +38,7 @@ function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
     return 1;
   }
   return 0;
-}
+};
 
 type Order = "asc" | "desc";
 
