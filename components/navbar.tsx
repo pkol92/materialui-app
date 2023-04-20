@@ -14,6 +14,7 @@ import Logout from "@mui/icons-material/Logout";
 import { useState } from "react";
 import Link from "next/link";
 import { CustomizedAlert } from "./alert";
+import { DraggableDialog } from "./dialog";
 
 export default function Navbar() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -36,15 +37,19 @@ export default function Navbar() {
           p: 1,
         }}
       >
-        <Typography sx={{ minWidth: 100 }}>
+        <div>
           <Link href="/login">Login example</Link>
-        </Typography>
-        <Typography sx={{ minWidth: 100 }}>
+        </div>
+        <div>
           <Link href="/register">Register example</Link>
-        </Typography>
-        <Typography sx={{ minWidth: 100 }}>
+        </div>
+        <div>
           <CustomizedAlert />
-        </Typography>
+        </div>
+        <div>
+          <DraggableDialog />
+        </div>
+
         <Tooltip title="Account settings">
           <IconButton
             onClick={handleClick}

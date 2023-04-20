@@ -32,7 +32,7 @@ export const CustomizedAlert = () => {
       <button onClick={handleClick}>Alert example</button>
       <Snackbar
         open={open}
-        autoHideDuration={6000}
+        autoHideDuration={4000}
         onClose={handleClose}
         anchorOrigin={{
           vertical: "bottom",
