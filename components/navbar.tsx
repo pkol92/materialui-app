@@ -13,6 +13,7 @@ import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import { useState } from "react";
 import Link from "next/link";
+import { CustomizedAlert } from "./alert";
 
 export default function Navbar() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -40,6 +41,9 @@ export default function Navbar() {
         </Typography>
         <Typography sx={{ minWidth: 100 }}>
           <Link href="/register">Register example</Link>
+        </Typography>
+        <Typography sx={{ minWidth: 100 }}>
+          <CustomizedAlert />
         </Typography>
         <Tooltip title="Account settings">
           <IconButton
