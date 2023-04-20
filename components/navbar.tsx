@@ -24,7 +24,7 @@ export default function Navbar() {
     setAnchorEl(null);
   };
   return (
-    <>
+    <div className="bg-neutral-600 text-white">
       <Box
         sx={{
           display: "flex",
@@ -36,10 +36,10 @@ export default function Navbar() {
         }}
       >
         <Typography sx={{ minWidth: 100 }}>
-          <Link href="/login">Login example</Link>{" "}
+          <Link href="/login">Login example</Link>
         </Typography>
         <Typography sx={{ minWidth: 100 }}>
-          <Link href="/register">Register example</Link>{" "}
+          <Link href="/register">Register example</Link>
         </Typography>
         <Tooltip title="Account settings">
           <IconButton
@@ -50,7 +50,7 @@ export default function Navbar() {
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
           >
-            <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+            <Avatar sx={{ width: 32, height: 32 }}>P</Avatar>
           </IconButton>
         </Tooltip>
       </Box>
@@ -115,6 +115,6 @@ export default function Navbar() {
           Logout
         </MenuItem>
       </Menu>
-    </>
+    </div>
   );
 }

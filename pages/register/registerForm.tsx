@@ -27,7 +27,11 @@ export const RegisterForm = () => {
     <Box
       component="form"
       sx={{
-        "& .MuiTextField-root": { m: 1, width: "100%" },
+        "& .MuiTextField-root": {
+          m: 1,
+          width: "100%",
+          backgroundColor: "white",
+        },
         "& > div": { display: "flex" },
         maxWidth: "500px",
         margin: "auto",
