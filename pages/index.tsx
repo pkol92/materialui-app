@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <main>
       <Navbar />
-      <div className="m-auto pt-20 pb-10 max-w-screen-md">
+      <div className="m-auto pt-20 pb-10 pr-4 ps-4 max-w-screen-md">
         <EnhancedTable />
       </div>
     </main>
