@@ -29,7 +29,9 @@ export const CustomizedAlert = () => {
 
   return (
     <Stack spacing={2} sx={{ width: "100%" }}>
-      <button onClick={handleClick}>Alert example</button>
+      <button onClick={handleClick} className="text-start">
+        Alert example
+      </button>
       <Snackbar
         open={open}
         autoHideDuration={4000}
