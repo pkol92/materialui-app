@@ -32,22 +32,24 @@ export default function Navbar() {
           display: "flex",
           alignItems: "center",
           textAlign: "center",
-          justifyContent: "flex-end",
+          justifyContent: "space-between",
           gap: "20px",
-          p: 1,
+          p: 2,
         }}
       >
-        <div>
-          <Link href="/login">Login example</Link>
-        </div>
-        <div>
-          <Link href="/register">Register example</Link>
-        </div>
-        <div>
-          <CustomizedAlert />
-        </div>
-        <div>
-          <DraggableDialog />
+        <div className="flex flex-row gap-10">
+          <div>
+            <Link href="/login">Login example</Link>
+          </div>
+          <div>
+            <Link href="/register">Register example</Link>
+          </div>
+          <div>
+            <CustomizedAlert />
+          </div>
+          <div>
+            <DraggableDialog />
+          </div>
         </div>
 
         <Tooltip title="Account settings">
