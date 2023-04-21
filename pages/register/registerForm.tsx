@@ -15,14 +15,37 @@ import {
   OutlinedInput,
   TextField,
 } from "@mui/material";
-import React, { useState, MouseEvent, ChangeEvent } from "react";
+import React, { useState, MouseEvent, ChangeEvent, useEffect } from "react";
 import { gender } from "../../mocks/gender";
 import { CheckboxAgreement } from "./checkboxAgreement";
-import CountrySelect from "./countrySelect";
+import { CountrySelect } from "./countrySelect";
 import { PasswordInput } from "../../components/passwordInput";
 import SendIcon from "@mui/icons-material/Send";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { literal, object, string, TypeOf } from "zod";
+import { RegisterInput, registerSchema } from "./registerSchema";
 
 export const RegisterForm = () => {
+  const {
+    formState: { errors, isSubmitSuccessful },
+    reset,
+    handleSubmit,
+    register,
+    setValue,
+    trigger,
+  } = useForm<RegisterInput>({ resolver: zodResolver(registerSchema) });
+
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      reset();
+    }
+  }, [isSubmitSuccessful, reset]);
+
+  const onSubmitHandler: SubmitHandler<RegisterInput> = (values) => {
+    console.log(values);
+  };
+
   return (
     <Box
       component="form"
@@ -32,22 +55,60 @@ export const RegisterForm = () => {
           width: "100%",
           backgroundColor: "white",
         },
+        "& .MuiFormHelperText-root": {
+          background: "rgb(244, 244, 244)",
+          m: 0,
+        },
         "& > div": { display: "flex" },
         maxWidth: "500px",
         margin: "auto",
       }}
       autoComplete="off"
+      onSubmit={handleSubmit(onSubmitHandler)}
+      noValidate
     >
       <div>
-        <TextField required id="name" label="name" />
-        <TextField required id="mail" label="mail" type="mail" />
+        <TextField
+          required
+          id="name"
+          label="name"
+          error={!!errors["name"]}
+          helperText={errors["name"] ? errors["name"].message : ""}
+          {...register("name")}
+        />
+        <TextField
+          required
+          id="mail"
+          label="mail"
+          type="mail"
+          error={!!errors["mail"]}
+          helperText={errors["mail"] ? errors["mail"].message : ""}
+          {...register("mail")}
+        />
       </div>
       <Box sx={{ m: 1 }}>
-        <PasswordInput />
+        <PasswordInput
+          error={!!errors["password"]}
+          helperText={errors["password"] ? errors["password"].message : ""}
+          register={(password) => register(password)}
+        />
       </Box>
-      <CountrySelect />
+      <CountrySelect
+        error={!!errors["country"]}
+        helperText={errors["country"] ? errors["country"].message : ""}
+        register={(country) => register(country)}
+        // trigger={trigger}
+      />
       <div>
-        <TextField id="select-sex" select label="sex" defaultValue="female">
+        <TextField
+          id="select-gender"
+          select
+          label="gender"
+          defaultValue="female"
+          error={!!errors["gender"]}
+          helperText={errors["gender"] ? errors["gender"].message : ""}
+          {...register("gender")}
+        >
           {gender.map((option) => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
@@ -66,6 +127,9 @@ export const RegisterForm = () => {
           InputProps={{
             inputProps: { min: 18, max: 99 },
           }}
+          error={!!errors["age"]}
+          helperText={errors["age"] ? errors["age"].message : ""}
+          {...register("age")}
         />
       </div>
       <div>
@@ -80,6 +144,9 @@ export const RegisterForm = () => {
               min: 1,
             },
           }}
+          error={!!errors["weight"]}
+          helperText={errors["weight"] ? errors["weight"].message : ""}
+          {...register("weight")}
         />
         <TextField
           label="height"
@@ -92,15 +159,23 @@ export const RegisterForm = () => {
               min: 1,
             },
           }}
+          error={!!errors["height"]}
+          helperText={errors["height"] ? errors["height"].message : ""}
+          {...register("height")}
         />
       </div>
       <div>
         <TextField
-          id="multiline"
+          id="description"
           label="About you"
           multiline
           rows={4}
           placeholder="Write something about you!"
+          error={!!errors["description"]}
+          helperText={
+            errors["description"] ? errors["description"].message : ""
+          }
+          {...register("description")}
         />
       </div>
 
@@ -143,7 +218,12 @@ export const RegisterForm = () => {
         </Box>
       </div>
       <div>
-        <CheckboxAgreement />
+        <CheckboxAgreement
+          error={!!errors["terms"]}
+          helperText={errors["terms"] ? errors["terms"].message : ""}
+          register={(terms) => register(terms)}
+          // setValue={(terms) => setValue(terms)}
+        />
       </div>
       <div className="mt-6 flex items-center justify-end gap-x-6 border-t border-gray-900/10 pt-6">
         <Button
@@ -154,6 +234,7 @@ export const RegisterForm = () => {
           Cancel
         </Button>
         <Button
+          type="submit"
           size="medium"
           color="error"
           variant="contained"

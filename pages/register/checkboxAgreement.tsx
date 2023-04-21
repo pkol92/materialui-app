@@ -1,7 +1,29 @@
 import { Box, FormControlLabel, Checkbox, FormControl } from "@mui/material";
 import React, { ChangeEvent, useState } from "react";
+import {
+  UseFormRegister,
+  UseFormRegisterReturn,
+  RegisterOptions,
+  UseFormSetValue,
+} from "react-hook-form";
+import { FC } from "react";
+import { FormHelperText } from "@mui/material";
+import { setConstantValue } from "typescript";
 
-export const CheckboxAgreement = () => {
+interface TermsSelectProps {
+  error: boolean;
+  helperText: string | undefined;
+  register: UseFormRegister<{ terms: boolean }>;
+  // setValue: UseFormSetValue<{
+  //   terms: boolean;
+  // }>;
+}
+
+export const CheckboxAgreement: FC<TermsSelectProps> = ({
+  error,
+  helperText,
+  register,
+}) => {
   const [checked, setChecked] = useState([true, false, false]);
 
   const handleChange = (
@@ -13,6 +35,7 @@ export const CheckboxAgreement = () => {
       newChecked[index] = event.target.checked;
       return newChecked;
     });
+    // setValue("terms", calculateChecked(checked));
   };
 
   const handleChangeAll = (event: ChangeEvent<HTMLInputElement>) => {
@@ -38,7 +61,12 @@ export const CheckboxAgreement = () => {
       <FormControlLabel
         label="I have read and accept the regulations"
         control={
-          <Checkbox checked={checked[0]} onChange={(e) => handleChange(0, e)} />
+          <Checkbox
+            checked={checked[0]}
+            onChange={(e) => {
+              handleChange(0, e);
+            }}
+          />
         }
       />
       <FormControlLabel
@@ -57,7 +85,12 @@ export const CheckboxAgreement = () => {
   );
 
   return (
-    <FormControl component="fieldset" sx={{ m: 1 }}>
+    <FormControl
+      component="fieldset"
+      sx={{ m: 1 }}
+      id="terms"
+      {...register("terms")}
+    >
       <FormControlLabel
         label="Consents"
         control={
@@ -68,6 +101,7 @@ export const CheckboxAgreement = () => {
           />
         }
       />
+      <FormHelperText error={error}>{helperText}</FormHelperText>
       {children}
     </FormControl>
   );

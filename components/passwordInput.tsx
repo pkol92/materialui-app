@@ -14,13 +14,13 @@ import {
   RegisterOptions,
 } from "react-hook-form";
 
-interface PasswordInput {
+interface PasswordInputProps {
   error: boolean;
   helperText: string | undefined;
   register: UseFormRegister<{ password: string }>;
 }
 
-export const PasswordInput: FC<PasswordInput> = ({
+export const PasswordInput: FC<PasswordInputProps> = ({
   error,
   helperText,
   register,
@@ -52,7 +52,7 @@ export const PasswordInput: FC<PasswordInput> = ({
         label="Password"
         {...register("password")}
       />
-      <FormHelperText error={error}>{error ? helperText : ""}</FormHelperText>
+      <FormHelperText error={error}>{helperText}</FormHelperText>
     </FormControl>
   );
 };
