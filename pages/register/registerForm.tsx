@@ -34,17 +34,28 @@ export const RegisterForm = () => {
     register,
     setValue,
     trigger,
+    getValues,
+    watch,
+    control,
   } = useForm<RegisterInput>({ resolver: zodResolver(registerSchema) });
 
-  useEffect(() => {
-    if (isSubmitSuccessful) {
-      reset();
-    }
-  }, [isSubmitSuccessful, reset]);
+  // useEffect(() => {
+
+  //   // if (isSubmitSuccessful) {
+  //   //   reset();
+  //   // }
+  // }, [watch]);
 
   const onSubmitHandler: SubmitHandler<RegisterInput> = (values) => {
     console.log(values);
   };
+
+  React.useEffect(() => {
+    const subscription = watch((value, { name, type }) =>
+      console.log(value, name, type)
+    );
+    return () => subscription.unsubscribe();
+  }, [watch]);
 
   return (
     <Box
@@ -96,8 +107,7 @@ export const RegisterForm = () => {
       <CountrySelect
         error={!!errors["country"]}
         helperText={errors["country"] ? errors["country"].message : ""}
-        register={(country) => register(country)}
-        // trigger={trigger}
+        control={control}
       />
       <div>
         <TextField

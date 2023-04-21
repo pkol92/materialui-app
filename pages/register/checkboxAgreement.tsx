@@ -64,7 +64,7 @@ export const CheckboxAgreement: FC<TermsSelectProps> = ({
           <Checkbox
             checked={checked[0]}
             onChange={(e) => {
-              handleChange(0, e);
+              handleChange(0, e), { ...register("terms") };
             }}
           />
         }
@@ -89,7 +89,7 @@ export const CheckboxAgreement: FC<TermsSelectProps> = ({
       component="fieldset"
       sx={{ m: 1 }}
       id="terms"
-      {...register("terms")}
+      // {...register("terms")}
     >
       <FormControlLabel
         label="Consents"
