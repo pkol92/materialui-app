@@ -6,10 +6,31 @@ import FormGroup from "@mui/material/FormGroup";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import LockIcon from "@mui/icons-material/Lock";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { LoginInput, loginSchema } from "./loginSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { literal, object, string, TypeOf } from "zod";
 
 export const LoginForm = () => {
+  const {
+    formState: { errors, isSubmitSuccessful },
+    reset,
+    handleSubmit,
+    register,
+  } = useForm<LoginInput>({ resolver: zodResolver(loginSchema) });
+
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      reset();
+    }
+  }, [isSubmitSuccessful, reset]);
+
+  const onSubmitHandler: SubmitHandler<LoginInput> = (values) => {
+    console.log(values);
+  };
+
   return (
     <div className="flex min-h-full items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-8">
@@ -20,6 +41,9 @@ export const LoginForm = () => {
         </div>
         <Box
           component="form"
+          onSubmit={handleSubmit(onSubmitHandler)}
+          noValidate
+          autoComplete="off"
           sx={{
             "& .MuiTextField-root": { width: "100%" },
             "& > div": {
@@ -31,9 +55,21 @@ export const LoginForm = () => {
             margin: "auto",
           }}
         >
-          <TextField required id="mail" label="mail" type="mail" />
+          <TextField
+            required
+            id="mail"
+            label="mail"
+            type="mail"
+            error={!!errors["mail"]}
+            helperText={errors["mail"] ? errors["mail"].message : ""}
+            {...register("mail")}
+          />
 
-          <PasswordInput />
+          <PasswordInput
+            error={!!errors["password"]}
+            helperText={errors["password"] ? errors["password"].message : ""}
+            register={(password) => register(password)}
+          />
 
           <div className="flex items-center justify-between w-full">
             <FormGroup>
@@ -50,6 +86,7 @@ export const LoginForm = () => {
 
           <div>
             <Button
+              type="submit"
               startIcon={<LockIcon />}
               className=" justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full"
             >
