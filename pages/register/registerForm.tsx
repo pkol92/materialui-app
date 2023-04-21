@@ -231,8 +231,7 @@ export const RegisterForm = () => {
         <CheckboxAgreement
           error={!!errors["terms"]}
           helperText={errors["terms"] ? errors["terms"].message : ""}
-          register={(terms) => register(terms)}
-          // setValue={(terms) => setValue(terms)}
+          control={control}
         />
       </div>
       <div className="mt-6 flex items-center justify-end gap-x-6 border-t border-gray-900/10 pt-6">

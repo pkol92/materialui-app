@@ -26,12 +26,9 @@ export const registerSchema = z.object({
   weight: z.string().nonempty("Weight is required"),
   height: z.string().nonempty("Height is required"),
   description: z.string().optional(),
-  //   terms: z
-  //     .boolean()
-  //     .refine((value) => value === true, { message: "Accept Terms is required" }),
-  terms: z.literal(true, {
-    invalid_type_error: "You must accept Terms and Conditions.",
-  }),
+  terms: z
+    .boolean()
+    .refine((value) => value === true, { message: "Accept Terms is required" }),
 });
 
 export type RegisterInput = TypeOf<typeof registerSchema>;

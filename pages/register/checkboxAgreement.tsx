@@ -1,28 +1,33 @@
 import { Box, FormControlLabel, Checkbox, FormControl } from "@mui/material";
 import React, { ChangeEvent, useState } from "react";
-import {
-  UseFormRegister,
-  UseFormRegisterReturn,
-  RegisterOptions,
-  UseFormSetValue,
-} from "react-hook-form";
+import { Controller, Control } from "react-hook-form";
 import { FC } from "react";
 import { FormHelperText } from "@mui/material";
-import { setConstantValue } from "typescript";
 
 interface TermsSelectProps {
   error: boolean;
   helperText: string | undefined;
-  register: UseFormRegister<{ terms: boolean }>;
-  // setValue: UseFormSetValue<{
-  //   terms: boolean;
-  // }>;
+  control: Control<
+    {
+      name: string;
+      mail: string;
+      password: string;
+      country: string;
+      gender: string;
+      age: string;
+      weight: string;
+      height: string;
+      terms: boolean;
+      description?: string | undefined;
+    },
+    any
+  >;
 }
 
 export const CheckboxAgreement: FC<TermsSelectProps> = ({
   error,
   helperText,
-  register,
+  control,
 }) => {
   const [checked, setChecked] = useState([true, false, false]);
 
@@ -35,7 +40,6 @@ export const CheckboxAgreement: FC<TermsSelectProps> = ({
       newChecked[index] = event.target.checked;
       return newChecked;
     });
-    // setValue("terms", calculateChecked(checked));
   };
 
   const handleChangeAll = (event: ChangeEvent<HTMLInputElement>) => {
@@ -64,7 +68,7 @@ export const CheckboxAgreement: FC<TermsSelectProps> = ({
           <Checkbox
             checked={checked[0]}
             onChange={(e) => {
-              handleChange(0, e), { ...register("terms") };
+              handleChange(0, e);
             }}
           />
         }
@@ -85,24 +89,25 @@ export const CheckboxAgreement: FC<TermsSelectProps> = ({
   );
 
   return (
-    <FormControl
-      component="fieldset"
-      sx={{ m: 1 }}
-      id="terms"
-      // {...register("terms")}
-    >
-      <FormControlLabel
-        label="Consents"
-        control={
-          <Checkbox
-            checked={calculateChecked(checked)}
-            indeterminate={calculateIndeterminate(checked)}
-            onChange={handleChangeAll}
+    <Controller
+      name="terms"
+      control={control}
+      render={({ field }) => (
+        <FormControl component="fieldset" sx={{ m: 1 }} id="terms" {...field}>
+          <FormControlLabel
+            label="Consents"
+            control={
+              <Checkbox
+                checked={calculateChecked(checked)}
+                indeterminate={calculateIndeterminate(checked)}
+                onChange={handleChangeAll}
+              />
+            }
           />
-        }
-      />
-      <FormHelperText error={error}>{helperText}</FormHelperText>
-      {children}
-    </FormControl>
+          <FormHelperText error={error}>{helperText}</FormHelperText>
+          {children}
+        </FormControl>
+      )}
+    />
   );
 };

@@ -21,7 +21,7 @@ interface CountrySelectProps {
       age: string;
       weight: string;
       height: string;
-      terms: true;
+      terms: boolean;
       description?: string | undefined;
     },
     any
