@@ -66,6 +66,7 @@ export const CheckboxAgreement: FC<TermsSelectProps> = ({
         label="I have read and accept the regulations"
         control={
           <Checkbox
+            required
             checked={checked[0]}
             onChange={(e) => {
               handleChange(0, e);
@@ -93,7 +94,7 @@ export const CheckboxAgreement: FC<TermsSelectProps> = ({
       name="terms"
       control={control}
       render={({ field }) => (
-        <FormControl component="fieldset" sx={{ m: 1 }} id="terms" {...field}>
+        <FormControl component="fieldset" sx={{ m: 1 }} id="terms">
           <FormControlLabel
             label="Consents"
             control={
