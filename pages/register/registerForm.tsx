@@ -68,6 +68,7 @@ export const RegisterForm = () => {
         "& .MuiFormHelperText-root": {
           background: "rgb(244, 244, 244)",
           m: 0,
+          ml: 1,
         },
         "& .MuiInputBase-root": {
           background: "white",
@@ -215,7 +216,7 @@ export const RegisterForm = () => {
             <div className="flex align-middle">
               <label
                 htmlFor="photo-file"
-                className="w-full rounded-md  px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 cursor-pointer"
+                className="w-full rounded-md  px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 cursor-pointer bg-white"
               >
                 Pick up your best photo!
               </label>

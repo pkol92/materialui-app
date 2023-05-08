@@ -48,7 +48,9 @@ export const CountrySelect: FC<CountrySelectProps> = ({
             options={countries}
             fullWidth
             autoHighlight
-            onSelect={(e) => field.onChange(e.target.value)}
+            onSelect={(e) =>
+              field.onChange((e.target as HTMLInputElement).value)
+            }
             getOptionLabel={(option) => option.label}
             renderOption={(props, option) => (
               <Box

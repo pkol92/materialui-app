@@ -17,7 +17,7 @@ export const registerSchema = z.object({
   //     label: z.string(),
   //     phone: z.string(),
   //   }),
-  country: z.string().nonempty("cos"),
+  country: z.string().nonempty("Country is required"),
   gender: z.string().nonempty("Gender is required"),
   age: z
     .string()
