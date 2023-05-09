@@ -5,10 +5,26 @@ import {
   OutlinedInput,
   InputAdornment,
   IconButton,
+  FormHelperText,
 } from "@mui/material";
-import React, { useState, MouseEvent, ChangeEvent } from "react";
+import React, { useState, MouseEvent, ChangeEvent, FC } from "react";
+import {
+  UseFormRegister,
+  UseFormRegisterReturn,
+  RegisterOptions,
+} from "react-hook-form";
 
-export const PasswordInput = () => {
+interface PasswordInputProps {
+  error: boolean;
+  helperText: string | undefined;
+  register: UseFormRegister<{ password: string }>;
+}
+
+export const PasswordInput: FC<PasswordInputProps> = ({
+  error,
+  helperText,
+  register,
+}) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClickShowPassword = () =>
@@ -34,7 +50,9 @@ export const PasswordInput = () => {
           </IconButton>
         }
         label="Password"
+        {...register("password")}
       />
+      <FormHelperText error={error}>{helperText}</FormHelperText>
     </FormControl>
   );
 };
