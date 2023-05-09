@@ -68,7 +68,6 @@ export const RegisterForm = () => {
         "& .MuiFormHelperText-root": {
           background: "rgb(244, 244, 244)",
           m: 0,
-          ml: 1,
         },
         "& .MuiInputBase-root": {
           background: "white",

@@ -21,8 +21,8 @@ export const registerSchema = z.object({
   weight: z.string().nonempty("Weight is required"),
   height: z.string().nonempty("Height is required"),
   description: z.string().optional(),
-  terms: z.boolean({
-    required_error: "Accept of terms is required",
+  terms: z.literal<boolean>(true, {
+    errorMap: () => ({ message: "Accept of terms is required" }),
   }),
 });
 

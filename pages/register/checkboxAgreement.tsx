@@ -15,14 +15,14 @@ export const CheckboxAgreement: FC<RegisterControlProps> = ({
       name="terms"
       control={control}
       render={({ field: { onChange, value } }) => (
-        <>
+        <Box sx={{ m: 1 }}>
           <FormControlLabel
             id="terms"
             control={<Checkbox checked={value ?? false} onChange={onChange} />}
             label="I have read and accept the regulations"
           />
           <FormHelperText error={error}>{helperText}</FormHelperText>
-        </>
+        </Box>
       )}
     />
   );

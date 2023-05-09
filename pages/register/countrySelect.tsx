@@ -63,8 +63,9 @@ export const CountrySelect: FC<RegisterControlProps> = ({
               />
             )}
           />
-
-          <FormHelperText error={error}>{helperText}</FormHelperText>
+          <Box sx={{ ml: 1 }}>
+            <FormHelperText error={error}>{helperText}</FormHelperText>
+          </Box>
         </>
       )}
     />
