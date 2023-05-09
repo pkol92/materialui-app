@@ -7,28 +7,9 @@ import { countries, CountryType } from "../../mocks/countries";
 import { Controller, Control } from "react-hook-form";
 import { FC } from "react";
 import { FormHelperText } from "@mui/material";
+import { RegisterControlProps } from "./registerFormTypes";
 
-interface CountrySelectProps {
-  error: boolean;
-  helperText: string | undefined;
-  control: Control<
-    {
-      name: string;
-      mail: string;
-      password: string;
-      country: string;
-      gender: string;
-      age: string;
-      weight: string;
-      height: string;
-      terms: boolean;
-      description?: string | undefined;
-    },
-    any
-  >;
-}
-
-export const CountrySelect: FC<CountrySelectProps> = ({
+export const CountrySelect: FC<RegisterControlProps> = ({
   error,
   helperText,
   control,

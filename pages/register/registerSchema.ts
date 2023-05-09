@@ -12,11 +12,6 @@ export const registerSchema = z.object({
     .nonempty("Password is required")
     .min(8, "Password must be more than 8 characters")
     .max(32, "Password must be less than 32 characters"),
-  //   country: z.object({
-  //     code: z.string(),
-  //     label: z.string(),
-  //     phone: z.string(),
-  //   }),
   country: z.string().nonempty("Country is required"),
   gender: z.string().nonempty("Gender is required"),
   age: z
@@ -26,9 +21,9 @@ export const registerSchema = z.object({
   weight: z.string().nonempty("Weight is required"),
   height: z.string().nonempty("Height is required"),
   description: z.string().optional(),
-  terms: z
-    .boolean()
-    .refine((value) => value === true, { message: "Accept Terms is required" }),
+  terms: z.boolean({
+    required_error: "Accept of terms is required",
+  }),
 });
 
 export type RegisterInput = TypeOf<typeof registerSchema>;
