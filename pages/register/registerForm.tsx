@@ -1,21 +1,11 @@
-import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {
   Box,
   Button,
-  Checkbox,
-  FormControl,
-  FormControlLabel,
-  FormGroup,
-  FormLabel,
-  IconButton,
-  Input,
   InputAdornment,
-  InputLabel,
   MenuItem,
-  OutlinedInput,
   TextField,
 } from "@mui/material";
-import React, { useState, MouseEvent, ChangeEvent, useEffect } from "react";
+import React, { useEffect } from "react";
 import { gender } from "../../mocks/gender";
 import { CheckboxAgreement } from "./checkboxAgreement";
 import { CountrySelect } from "./countrySelect";
@@ -23,7 +13,6 @@ import { PasswordInput } from "../../components/passwordInput";
 import SendIcon from "@mui/icons-material/Send";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { literal, object, string, TypeOf } from "zod";
 import { RegisterInput, registerSchema } from "./registerSchema";
 
 export const RegisterForm = () => {
@@ -32,10 +21,6 @@ export const RegisterForm = () => {
     reset,
     handleSubmit,
     register,
-    setValue,
-    trigger,
-    getValues,
-    watch,
     control,
   } = useForm<RegisterInput>({ resolver: zodResolver(registerSchema) });
 
@@ -48,13 +33,6 @@ export const RegisterForm = () => {
   const onSubmitHandler: SubmitHandler<RegisterInput> = (values) => {
     console.log(values);
   };
-
-  React.useEffect(() => {
-    const subscription = watch((value, { name, type }) =>
-      console.log(value, name, type)
-    );
-    return () => subscription.unsubscribe();
-  }, [watch]);
 
   return (
     <Box
